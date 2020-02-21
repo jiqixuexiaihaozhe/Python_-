@@ -1,0 +1,38 @@
+s = (x * x for x in range(5)) #这里s是个生成器，而不是列表了
+print(s)  #<generator object <genexpr> at 0x00000218A520BD48>
+for x in s:
+    print(x)
+
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+
+f = fib(10)
+print('fib(10):', f)
+for x in f:
+    print(x)
+
+# call generator manually:
+g = fib(5)
+while 1:
+    try:
+        x = next(g)
+        print('g:', x)
+    except StopIteration as e:
+        print('Generator return value:', e.value)
+        break
+
+
+
+def odd():
+    yield 1
+    yield 3
+    yield 5
+    return "done"
+o = odd()
+for x in o:
+    print(x)
