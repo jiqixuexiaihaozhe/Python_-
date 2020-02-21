@@ -1,0 +1,33 @@
+import collections
+
+class func():
+    def __init__(self): #构造函数
+        self.name = []
+        self.position = 0
+    def add(self,name):
+        self.name.append(name)
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.position < len(self.name):
+            t  = self.name[self.position]
+            print(t)
+            self.position = self.position+1
+            return t
+        else:
+            raise StopIteration
+#创建对象
+s1 = func() #创建了一个s1对象，s1包含一个空列表
+s1.add('aaaa')
+s1.add('bbbb')
+s1.add('cccc')
+
+print(s1)
+print(isinstance(s1,collections.Iterator))
+
+next(s1)
+next(s1)
+next(s1)
+
+for i in s1:
+    next(s1)
